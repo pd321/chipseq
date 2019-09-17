@@ -3,9 +3,9 @@ labname: ''
 # name of the seqeucing platform
 platform: 'ILLUMINA'
 # path to blacklist regions
-blklist_regions: '/tmp/blacklist.bed'
+blklist_regions: '/data/ref/hg19/bed/blacklist_regions.bed'
 # path to genome sizes file
-genome_sizes: '/tmp/genome.sizes'
+genome_sizes: '/data/ref/hg19/fa/genome.chrom.genome_sizes'
 # genome for methods
 genomes: 'hg19'
 
@@ -19,7 +19,7 @@ bowtie:
   # --chunkmbs <int>   max megabytes of RAM for best-first search frames (def: 64)
   chunkmbs: 250
   # idx location
-  idx: "/usr/share/ref_genomes/hg19/bowtie_idx/hg19"
+  idx: "/data/ref/hg19/idx/bowtie1/bowtie1"
 
 macs2:
   # -g GSIZE, --gsize GSIZE
