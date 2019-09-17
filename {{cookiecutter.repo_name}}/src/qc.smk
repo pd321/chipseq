@@ -23,8 +23,7 @@ rule flagstat:
 
 rule multiqc:
 	input:
-		expand(["results/qc/fastqc/{sample}_fastqc.html", "results/qc/flagstat/{sample}.txt", 
-			"results/qc/remdup/{sample}.metrics.txt"], sample = samples)
+		expand(["results/qc/fastqc/{sample}_fastqc.html", "results/qc/flagstat/{sample}.txt"], sample = samples)
 	output:
 		report("results/qc/multiqc/multiqc_report.html", caption="report/multiqc.rst", category="Quality control")
 	conda:
@@ -37,4 +36,4 @@ rule multiqc:
 		'--force '
 		'--outdir results/qc/multiqc '
 		'--zip-data-dir '
-		'. 2>&1 | tee {log}'
+		'logs results 2>&1 | tee {log}'
