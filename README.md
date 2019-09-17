@@ -9,7 +9,7 @@ A snakemake based workflow for ChIP-Seq data analysis.
 ## Overview
 Implemented workflow
 
-![canvas](assets/canvas-1568705228184.png)
+![dag](assets/dag.svg)
 
 
 ## Credits
