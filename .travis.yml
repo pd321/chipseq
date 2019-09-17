@@ -21,7 +21,7 @@ install:
   # add additional stuff to setup below
   - conda create -q -n prep bowtie
   - source activate prep
-  - bowtie-build .test/data/external/ref/genome.fa .test/data/external/ref/genome
+  - bowtie-build .test/data/external/ref/fa/genome.fa .test/data/external/ref/fa/genome
 
 script:
   - source activate snakemake
