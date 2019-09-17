@@ -1,4 +1,4 @@
-# snakemake-chipseq
+# chipseq
 
 *under active development*
 
