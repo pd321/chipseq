@@ -1,3 +1,4 @@
 {
-  "repo_name": "snakemake-chipseq"
+  "repo_name": "snakemake-chipseq",
+  "_copy_without_render": ["*.smk", "*.rst"]
 }
