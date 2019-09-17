@@ -33,6 +33,6 @@ script:
   - pip install Pygments
   - snakemake --directory ../.test --report report.html
 
-cache:
-  directories:
-    - .test/.snakemake/conda
+# cache:
+#  directories:
+#    - .test/.snakemake/conda
