@@ -19,7 +19,7 @@ bowtie:
   # --chunkmbs <int>   max megabytes of RAM for best-first search frames (def: 64)
   chunkmbs: 250
   # idx location
-  idx: "data/external/ref/bowtie/genome"
+  idx: "data/external/ref/genome"
 
 macs2:
   # -g GSIZE, --gsize GSIZE
