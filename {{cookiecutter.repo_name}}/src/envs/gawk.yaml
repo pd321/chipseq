@@ -1,0 +1,5 @@
+name: gawk
+channels:
+  - defaults
+dependencies:
+  - gawk = 5.0.1

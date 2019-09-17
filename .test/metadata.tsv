@@ -1,0 +1,4 @@
+sample_name	r1	type	input	peak_type
+sample2	data/raw/sample2/sample2_1.fq.gz	chip	input1	narrow
+sample1	data/raw/sample1/sample1_1.fq.gz	chip	input1	broad
+input1	data/raw/input1/input1_1.fq.gz	input		

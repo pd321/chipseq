@@ -1,0 +1,7 @@
+# Ignore editor files
+.idea
+
+# Ignore test files
+**/.snakemake
+**/results
+**/logs
