@@ -7,7 +7,7 @@ blklist_regions: '/data/ref/hg19/bed/blacklist_regions.bed'
 # path to genome sizes file
 genome_sizes: '/data/ref/hg19/fa/genome.chrom.genome_sizes'
 # genome for methods
-genomes: 'hg19'
+genome: 'hg19'
 
 
 # used to align single end reads to the ref genome
@@ -39,7 +39,9 @@ macs2:
 # ----------------addons----------------
 addons:
   # Trim/Remove adapters from the reads?
-  trimgalore: true
+  trimgalore: false
+  # Call super enhancers using rose?
+  se: false
 
 trimgalore:
   # -q/--quality <INT>     Trim low-quality ends from reads in addition to adapter removal. For                                                                                                                       
@@ -57,3 +59,9 @@ trimgalore:
   # -e <ERROR RATE>         Maximum allowed error rate (no. of errors divided by the length of the matching
   #                       region) (default: 0.1)
   e: 0.1
+
+se:
+  # Dirctory having the rose scripts ROSE_main.py and ROSE_geneMapper.py
+  rose_dir: '/tmp/rose'
+  # Enter a distance from TSS to exclude. 0 = no TSS exclusion
+  tss_dist: 2500
