@@ -41,7 +41,7 @@ addons:
   # Trim/Remove adapters from the rNo lint results.eads?
   trimgalore: false
   # Call super enhancers using rose?
-  se: true
+  se: false
 
 trimgalore:
   # -q/--quality <INT>     Trim low-quality ends from reads in addition to adapter removal. For                                                                                                                       
