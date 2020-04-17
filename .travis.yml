@@ -27,7 +27,7 @@ script:
   - source activate snakemake
   # run the workflow
   # put a test case into the subfolder .test (e.g., use https://github.com/snakemake-workflows/ngs-test-data as a submodule)
-  - snakemake --use-conda --directory .test
+  - snakemake --use-conda --directory .test --cores 1
   # Reports needs pygments installed and we need it in snakemake environment
   - pip install Pygments
   - snakemake --directory .test --report report.html
