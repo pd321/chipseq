@@ -16,3 +16,4 @@ Implemented workflow
 
 The test data for Travis CI was reused from chipseq test dataset for [nf-co.re](https://github.com/nf-core/test-datasets/tree/chipseq).
 
+
