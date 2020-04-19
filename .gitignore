@@ -9,16 +9,3 @@
 .Rproj.user
 *.Rproj
 
-# Ignoring large files
-*.fq.gz
-*.fq
-*.fastq.gz
-*.gtf
-*.bam
-*.bai
-*.bw
-*.bdg
-*.fa
-*.vcf
-*.vcf.gz
-
