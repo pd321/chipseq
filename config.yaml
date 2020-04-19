@@ -33,13 +33,12 @@ macs2:
   #                       DEFAULT: 0.05. -q, and -p are mutually exclusive.
   qvalue: 0.01
 
-
-
-
 # ----------------addons----------------
 addons:
-  # Trim/Remove adapters from the reads?
-  trimgalore: false
+  # Annotate peaks using homer
+  homer_annot: false
+  # Analyse motifs using homer
+  homer_motifs: false
   # Call super enhancers using rose?
   se: false
 

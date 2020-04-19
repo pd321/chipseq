@@ -8,4 +8,4 @@
 !.test/metadata.tsv
 .Rproj.user
 *.Rproj
-
+.Rhistory

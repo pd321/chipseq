@@ -36,9 +36,9 @@ rule multiqc:
 		expand(["results/qc/fastqc/{se_sample}_fastqc.html", 
 			"results/qc/fastqc/{pe_sample}_{group}_fastqc.html", 
 		 "results/qc/flagstat/{sample}.txt"], sample = samples, 
-		 se_sample = se_samples, pe_sample = pe_samples, group= ["r1", "r2"],)
+		 se_sample = se_samples, pe_sample = pe_samples, group = ["r1", "r2"],)
 	output:
-		report("results/qc/multiqc/multiqc_report.html", caption="report/multiqc.rst", category="Quality control")
+		report("results/qc/multiqc/multiqc_report.html", caption ="report/multiqc.rst", category = "Quality control")
 	conda:
 		"envs/multiqc.yaml"
 	threads: threads_high

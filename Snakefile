@@ -1,10 +1,10 @@
 include: "src/common.smk"
-# include: "src/addons.smk"
 include: "src/align.smk"
 include: "src/peaks.smk"
 include: "src/bw.smk"
 include: "src/se.smk"
 include: "src/qc.smk"
+include: "src/addons.smk"
 
 
 peaks = expand("results/peaks/{chip_sample}/{chip_sample}_peaks.filt.bed", chip_sample = chip_samples)
@@ -14,6 +14,12 @@ out_files = peaks + bw + qc
 
 if config['addons']['se']:
 	out_files += expand("results/se/{chip_sample}/{chip_sample}_peaks_AllEnhancers_ENHANCER_TO_GENE.txt", chip_sample = chip_samples)
+
+if config['addons']['homer_annot']:
+	out_files += expand("results/peaks/{chip_sample}/{chip_sample}_peaks_annot.xls", chip_sample = chip_samples)
+
+if config['addons']['homer_motifs']:
+	out_files += expand("results/motif/{chip_sample}/homerResults.html", chip_sample = chip_samples)
 
 rule all:
 	input:
