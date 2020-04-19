@@ -27,10 +27,21 @@ samples = metadata_df.index.tolist()
 # Convert df to dict for trt/ctrl pairing
 metadata_dict = metadata_df.to_dict('index')
 chip_samples = [sample for sample in metadata_dict if metadata_dict[sample]['type'] == "chip"]
+se_samples = [sample for sample in metadata_dict if metadata_dict[sample]['end_type'] == "se"]
+pe_samples = [sample for sample in metadata_dict if metadata_dict[sample]['end_type'] == "pe"]
 
 # Get the raw fastq files to start with
-def get_fastq(wildcards):
+def get_fastq_se(wildcards):
     return metadata_df.loc[(wildcards.sample), "r1"]
+
+def get_fastq_pe(wildcards):
+    return metadata_df.loc[(wildcards.sample), ["r1", "r2"]]
 
 def get_input_bam(wildcards):
     return "results/bam/{}.bam".format(metadata_df.loc[(wildcards.chip_sample), "input"])
+
+def get_remdup_input(wildcards):
+    if metadata_df.loc[(wildcards.sample), "end_type"] == "se":
+        return "results/bam/{}_bowtie.bam".format(wildcards.sample)
+    elif metadata_df.loc[(wildcards.sample), "end_type"] == "pe":
+        return "results/bam/{}_bowtie2.bam".format(wildcards.sample)

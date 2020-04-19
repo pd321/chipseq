@@ -1,5 +1,5 @@
 include: "src/common.smk"
-include: "src/addons.smk"
+# include: "src/addons.smk"
 include: "src/align.smk"
 include: "src/peaks.smk"
 include: "src/bw.smk"

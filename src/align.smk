@@ -1,6 +1,56 @@
+rule trimgalore_se:
+	input: get_fastq_se
+	output: temp("results/bam/{sample}_1_trimmed.fq.gz")
+	conda: "envs/trimgalore.yaml"
+	log: "logs/trimgalore/{sample}.log"
+	params:
+		quality = config['trimgalore']['quality'],
+		stringency = config['trimgalore']['stringency'],
+		e = config['trimgalore']['e']
+	# trimgalore does not recommend using more than 4 threads
+	threads: threads_mid if threads_mid < 4 else 4
+	shell:
+		'trim_galore '
+		'--quality {params.quality} '
+		'--stringency {params.stringency} '
+		'-e {params.e} '
+		'--gzip '
+		'--output_dir results/bam/ '
+		'--cores {threads} '
+		'--basename {wildcards.sample} '
+		'--no_report_file '
+		'{input} 2>&1 | tee {log}'
+
+rule trimgalore_pe:
+	input:
+		get_fastq_pe
+	output:
+		r1 = temp("results/bam/{sample}_R1_val_1.fq.gz"),
+		r2 = temp("results/bam/{sample}_R2_val_2.fq.gz")
+	conda:
+		"envs/trimgalore.yaml"
+	log:
+		"logs/trimgalore/{sample}.log"
+	params:
+		quality = config['trimgalore']['quality'],
+		stringency = config['trimgalore']['stringency'],
+		e = config['trimgalore']['e']
+	threads: threads_mid if threads_mid < 4 else 4
+	shell:
+		'trim_galore '
+		'--quality {params.quality} '
+		'--stringency {params.stringency} '
+		'-e {params.e} '
+		'--gzip '
+		'--output_dir results/bam/ '
+		'--cores 4 '
+		'--basename {wildcards.sample} '
+		'--paired --no_report_file '
+		'{input[0]} {input[1]} 2>&1 | tee {log}'
+
 rule bowtie:
 	input: 
-		rules.trimgalore.output if config['addons']['trimgalore'] else get_fastq
+		rules.trimgalore_se.output
 	output: 
 		temp("results/bam/{sample}_bowtie.bam")
 	conda: 
@@ -37,9 +87,42 @@ rule bowtie:
 		'samtools view -@ {threads} -bS - | '
 		'samtools sort -@ {threads} -o {output} -'
 
+rule bowtie2:
+	input:
+		r1 = rules.trimgalore_pe.output.r1,
+		r2 = rules.trimgalore_pe.output.r2
+	output:
+		temp("results/bam/{sample}_bowtie2.bam")
+	conda:
+		"envs/bowtie2.yaml"
+	log:
+		"logs/bowtie2/{sample}.log"
+	params:	
+		idx = config['bowtie2']['idx'],
+		maxins = config['bowtie2']['maxins']
+	threads: threads_high
+	shell:
+		'bowtie2 '
+		'--very-sensitive '
+		'--maxins {params.maxins} '
+		'--no-mixed '
+		'--no-discordant '
+		'--time '
+		'--threads {threads} '
+		'-x {params.idx} '
+		'-1 {input[0]} '
+		'-2 {input[1]} '
+		'2> {log} | '
+		'samtools view '
+		'--threads {threads} '
+		'-b -| '
+		'samtools sort '
+		'--threads {threads} '
+		'-o {output}'
+
 rule remdup:
 	input:
-		rules.bowtie.output
+		get_remdup_input
 	output:
 		bam = "results/bam/{sample}.bam",
 		bai = "results/bam/{sample}.bai",

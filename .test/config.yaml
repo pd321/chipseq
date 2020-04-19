@@ -21,6 +21,10 @@ bowtie:
   # idx location
   idx: "data/external/ref/fa/genome"
 
+bowtie2:
+  idx: "data/external/ref/fa/genome"
+  maxins: 2000
+
 macs2:
   # -g GSIZE, --gsize GSIZE
   #                       Effective genome size. It can be 1.0e+9 or 1000000000,
@@ -38,8 +42,6 @@ macs2:
 
 # ----------------addons----------------
 addons:
-  # Trim/Remove adapters from the rNo lint results.eads?
-  trimgalore: false
   # Call super enhancers using rose?
   se: false
 
