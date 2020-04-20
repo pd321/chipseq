@@ -2,8 +2,10 @@
 .idea
 
 # Ignore test files
-**/.snakemake
-**/results
-**/logs
-*.ebwt
-.test/report.html
+.test
+!.test/data
+!.test/config.yaml
+!.test/metadata.tsv
+.Rproj.user
+*.Rproj
+.Rhistory
