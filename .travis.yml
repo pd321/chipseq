@@ -21,6 +21,7 @@ install:
   # add additional stuff to setup below
   - conda create -q -n prep bowtie bowtie2
   - source activate prep
+  - gunzip .test/data/external/ref/fa/genome.fa.gz
   - bowtie-build .test/data/external/ref/fa/genome.fa .test/data/external/ref/fa/genome
   - bowtie2-build .test/data/external/ref/fa/genome.fa .test/data/external/ref/fa/genome
 
