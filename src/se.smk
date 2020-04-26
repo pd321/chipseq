@@ -5,7 +5,7 @@ rule rose_main:
 		peaks = rules.blklist_filt.output
 	output:
 		enhancers_table = "results/se/{chip_sample}/{chip_sample}_peaks_AllEnhancers.table.txt",
-		enhancers_plot = "results/se/{chip_sample}/{chip_sample}_Plot_points.png"
+		enhancers_plot = "results/se/{chip_sample}/{chip_sample}_peaks_Plot_points.png"
 	threads: threads_mid
 	log: "logs/se/{chip_sample}_rose_main.log"
 	params:

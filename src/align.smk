@@ -6,9 +6,11 @@ rule trimgalore_se:
 	params:
 		quality = config['trimgalore']['quality'],
 		stringency = config['trimgalore']['stringency'],
-		e = config['trimgalore']['e']
-	# trimgalore does not recommend using more than 4 threads
-	threads: threads_mid if threads_mid < 4 else 4
+		e = config['trimgalore']['e'],
+		#trimgalore does not recommend using more than 4 threads
+		threads_actual = threads_mid if threads_mid < 4 else 4
+	# setting it to mid ensures not no many trimgalore jobs launched
+	threads: threads_mid
 	shell:
 		'trim_galore '
 		'--quality {params.quality} '
@@ -16,7 +18,7 @@ rule trimgalore_se:
 		'-e {params.e} '
 		'--gzip '
 		'--output_dir results/bam/ '
-		'--cores {threads} '
+		'--cores {params.threads_actual} '
 		'--basename {wildcards.sample} '
 		'--no_report_file '
 		'{input} 2>&1 | tee {log}'
@@ -34,8 +36,11 @@ rule trimgalore_pe:
 	params:
 		quality = config['trimgalore']['quality'],
 		stringency = config['trimgalore']['stringency'],
-		e = config['trimgalore']['e']
-	threads: threads_mid if threads_mid < 4 else 4
+		e = config['trimgalore']['e'],
+		#trimgalore does not recommend using more than 4 threads
+		threads_actual = threads_mid if threads_mid < 4 else 4
+	# setting it to mid ensures not no many trimgalore jobs launched
+	threads: threads_mid
 	shell:
 		'trim_galore '
 		'--quality {params.quality} '
@@ -43,7 +48,7 @@ rule trimgalore_pe:
 		'-e {params.e} '
 		'--gzip '
 		'--output_dir results/bam/ '
-		'--cores 4 '
+		'--cores {params.threads_actual} '
 		'--basename {wildcards.sample} '
 		'--paired --no_report_file '
 		'{input[0]} {input[1]} 2>&1 | tee {log}'
