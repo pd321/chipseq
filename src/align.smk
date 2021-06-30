@@ -1,6 +1,6 @@
 rule trimgalore_se:
 	input: get_fastq_se
-	output: temp("results/bam/{sample}_1_trimmed.fq.gz")
+	output: temp("results/bam/{sample}_trimmed.fq.gz")
 	conda: "envs/trimgalore.yaml"
 	log: "logs/trimgalore/{sample}.log"
 	params:
@@ -27,8 +27,8 @@ rule trimgalore_pe:
 	input:
 		get_fastq_pe
 	output:
-		r1 = temp("results/bam/{sample}_R1_val_1.fq.gz"),
-		r2 = temp("results/bam/{sample}_R2_val_2.fq.gz")
+		r1 = temp("results/bam/{sample}_val_1.fq.gz"),
+		r2 = temp("results/bam/{sample}_val_2.fq.gz")
 	conda:
 		"envs/trimgalore.yaml"
 	log:
@@ -129,8 +129,8 @@ rule remdup:
 	input:
 		get_remdup_input
 	output:
-		bam = "results/bam/{sample}.bam",
-		bai = "results/bam/{sample}.bai",
+		bam = "results/bam/{sample}_remdup.bam",
+		bai = "results/bam/{sample}_remdup.bai",
 		metrics = "results/qc/remdup/{sample}.metrics.txt"
 	conda:
 		"envs/picard.yaml"

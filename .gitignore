@@ -9,3 +9,9 @@
 .Rproj.user
 *.Rproj
 .Rhistory
+workspace.code-workspace
+.vscode/settings.json
+
+# Ignore test index files
+*.ebwt
+*.bt2

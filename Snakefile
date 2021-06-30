@@ -7,8 +7,8 @@ include: "src/qc.smk"
 include: "src/addons.smk"
 
 
-peaks = expand("results/peaks/{chip_sample}/{chip_sample}_peaks.filt.bed", chip_sample = chip_samples)
-bw = expand("results/bw/{chip_sample}-{bdg_type}.bw", chip_sample = chip_samples, bdg_type = bdg_types)
+peaks = expand("results/peaks/{chip_sample}/{chip_sample}_peaks.filt.narrowPeak", chip_sample = chip_samples)
+bw = expand("results/bw/{sample}.bw", sample = samples)
 qc = ["results/qc/multiqc/multiqc_report.html"]
 out_files = peaks + bw + qc
 

@@ -14,7 +14,6 @@ threads_high = available_cpu_count()
 threads_mid = int(threads_high/2)
 threads_low = int(threads_high/4)
 run_name = os.path.basename(os.getcwd())
-bdg_types = ['treat_pileup', 'control_lambda', 'input_minus']
 
 # Load in metadata
 metadata_file = "metadata.tsv"
@@ -38,10 +37,16 @@ def get_fastq_pe(wildcards):
     return metadata_df.loc[(wildcards.sample), ["r1", "r2"]]
 
 def get_input_bam(wildcards):
-    return "results/bam/{}.bam".format(metadata_df.loc[(wildcards.chip_sample), "input"])
+    return "results/bam/{}_remdup.bam".format(metadata_df.loc[(wildcards.chip_sample), "input"])
 
 def get_remdup_input(wildcards):
     if metadata_df.loc[(wildcards.sample), "end_type"] == "se":
         return "results/bam/{}_bowtie.bam".format(wildcards.sample)
     elif metadata_df.loc[(wildcards.sample), "end_type"] == "pe":
         return "results/bam/{}_bowtie2.bam".format(wildcards.sample)
+
+def get_read_extension_length(wildcards):
+    if metadata_df.loc[(wildcards.sample), "end_type"] == "se":
+        return config['bamcoverage_bw']['read_extension_length']
+    elif metadata_df.loc[(wildcards.sample), "end_type"] == "pe":
+        return ''
