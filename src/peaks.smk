@@ -30,7 +30,7 @@ rule blklist_filt:
 		peaks = rules.macs2.output.peaks,
 		blklist_regions = config['blklist_regions']
 	output:
-		"results/peaks/{chip_sample}/{chip_sample}_peaks.filt.bed"
+		"results/peaks/{chip_sample}/{chip_sample}_peaks.filt.narrowPeak"
 	conda:
 		"envs/bedtools.yaml"
 	threads: threads_low
