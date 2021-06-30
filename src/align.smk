@@ -129,8 +129,8 @@ rule remdup:
 	input:
 		get_remdup_input
 	output:
-		bam = "results/bam/{sample}.bam",
-		bai = "results/bam/{sample}.bai",
+		bam = "results/bam/{sample}_remdup.bam",
+		bai = "results/bam/{sample}_remdup.bai",
 		metrics = "results/qc/remdup/{sample}.metrics.txt"
 	conda:
 		"envs/picard.yaml"

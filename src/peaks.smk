@@ -1,11 +1,9 @@
 rule macs2:
 	input:
-		trt_bam = "results/bam/{chip_sample}.bam",
+		trt_bam = "results/bam/{chip_sample}_remdup.bam",
 		cnt_bam = get_input_bam
 	output:
-		peaks = temp("results/peaks/{chip_sample}/{chip_sample}_peaks.narrowPeak"),
-		trt_bdg = temp("results/peaks/{chip_sample}/{chip_sample}_treat_pileup.bdg"),
-		cnt_bdg = temp("results/peaks/{chip_sample}/{chip_sample}_control_lambda.bdg")
+		peaks = temp("results/peaks/{chip_sample}/{chip_sample}_peaks.narrowPeak")
 	conda:
 		"envs/macs2.yaml"
 	log:
@@ -22,7 +20,6 @@ rule macs2:
 		'--gsize {params.gsize} '
 		'--keep-dup all '
 		'--outdir results/peaks/{wildcards.chip_sample} '
-		'--bdg --SPMR '
 		'--nomodel '
 		'--extsize 200 '
 		'--qvalue {params.qvalue} '
