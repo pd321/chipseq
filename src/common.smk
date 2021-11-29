@@ -10,7 +10,7 @@ configfile: 'config.yaml'
 # validate(config, schema="schemas/config_schema.yaml")
 
 # Setup vars
-threads_high = available_cpu_count()
+threads_high = int(available_cpu_count()/2)
 threads_mid = int(threads_high/2)
 threads_low = int(threads_high/4)
 run_name = os.path.basename(os.getcwd())
