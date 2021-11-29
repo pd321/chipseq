@@ -3,11 +3,11 @@ labname: ''
 # name of the seqeucing platform
 platform: 'ILLUMINA'
 # path to blacklist regions
-blklist_regions: '/data/ref/hg19/bed/blacklist_regions.bed'
+blklist_regions: 'data/external/ref/fa/blacklist_regions.bed'
 # path to genome sizes file
-genome_sizes: '/data/ref/hg19/fa/genome.chrom.genome_sizes'
+genome_sizes: 'data/external/ref/fa/genome.chrom.sizes'
 # genome for methods
-genome: 'hg19'
+genome: 'mm10'
 
 
 # used to align single end reads to the ref genome
@@ -19,7 +19,11 @@ bowtie:
   # --chunkmbs <int>   max megabytes of RAM for best-first search frames (def: 64)
   chunkmbs: 250
   # idx location
-  idx: "/data/ref/hg19/idx/bowtie1/bowtie1"
+  idx: "data/external/ref/idx/bowtie/index"
+
+bowtie2:
+  idx: 'data/external/ref/idx/bowtie2/index'
+  maxins: '2000'
 
 macs2:
   # -g GSIZE, --gsize GSIZE
@@ -27,11 +31,11 @@ macs2:
   #                       or shortcuts:'hs' for human (2.7e9), 'mm' for mouse
   #                       (1.87e9), 'ce' for C. elegans (9e7) and 'dm' for
   #                       fruitfly (1.2e8), Default:hs
-  gsize: 'hs'
+  gsize: 'mm'
   # -q QVALUE, --qvalue QVALUE
   #                       Minimum FDR (q-value) cutoff for peak detection.
   #                       DEFAULT: 0.05. -q, and -p are mutually exclusive.
-  qvalue: 0.01
+  qvalue: 0.05
 
 bamcoverage_bw:
   # --binSize, -bs   
@@ -99,14 +103,21 @@ trimgalore:
   #                       (Subtract INT from all qualities; compute partial sums from all indices                                                                                                                    
   #                       to the end of the sequence; cut sequence at the index at which the sum is                                                                                                                  
   #                       minimal). Default Phred score: 20.  
-  quality: 10
+  quality: 30
   # --stringency <INT>    Overlap with adapter sequence required to trim a sequence. Defaults to a
   #                      very stringent setting of 1, i.e. even a single bp of overlapping sequence                                                                                                                 
   #                      will be trimmed off from the 3' end of any read. 
-  stringency: 5
+  stringency: 1
   # -e <ERROR RATE>         Maximum allowed error rate (no. of errors divided by the length of the matching
   #                       region) (default: 0.1)
   e: 0.1
+  # --length <INT>
+  # Discard reads that became shorter than length INT because of either quality or adapter trimming. A value of 0 effectively disables this behaviour.
+  # Default: 20 bp.
+  # For paired-end files, both reads of a read-pair need to be longer than bp to be printed out to validated paired-end files (see option --paired). If only one read became too short there is the possibility of keeping such unpaired single-end reads (see --retain_unpaired).
+  # Default pair-cutoff: 20 bp.
+  length: 30
+
 
 se:
   # Dirctory having the rose scripts ROSE_main.py and ROSE_geneMapper.py
