@@ -143,5 +143,5 @@ rule remdup:
 		'CREATE_INDEX=true '
 		'INPUT={input} '
 		'OUTPUT={output.bam} '
-		'REMOVE_DUPLICATES= true '
+		'REMOVE_DUPLICATES=true '
 		'METRICS_FILE={output.metrics} 2>&1 | tee {log}'
