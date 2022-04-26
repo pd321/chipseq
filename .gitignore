@@ -15,3 +15,4 @@ workspace.code-workspace
 # Ignore test index files
 *.ebwt
 *.bt2
+chipseq.code-workspace
