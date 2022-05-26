@@ -52,9 +52,7 @@ if __name__ == "__main__":
     parser.add_argument('-d', '--dirs', dest='sample_dirs', action='append')
 
     # Choices restricted to prevent flip between read1/read2
-    parser.add_argument('-f', '--read1', dest='read1_extension', default='_1.fq.gz',
-                        choices=['_1.fq.gz', '_R1_001.fastq.gz', '1.fq.gz'])
-    parser.add_argument('-r', '--read2', dest='read2_extension', default='_2.fq.gz',
-                        choices=['_2.fq.gz', '_R2_001.fastq.gz', '2.fq.gz'])
+    parser.add_argument('-f', '--read1', dest='read1_extension')
+    parser.add_argument('-r', '--read2', dest='read2_extension')
     cmd_args = parser.parse_args()
     main(cmd_args)
