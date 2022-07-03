@@ -6,7 +6,7 @@ rule fastqc_se:
 		zip="results/qc/fastqc/{se_sample}_fastqc.zip"
 	threads: threads_mid
 	wrapper:
-		"0.38.0/bio/fastqc"
+		"v1.7.0/bio/fastqc"
 
 rule fastqc_pe:
 	input:
@@ -16,7 +16,7 @@ rule fastqc_pe:
 		zip="results/qc/fastqc/{pe_sample}_{group}_fastqc.zip"
 	threads: threads_mid
 	wrapper:
-		"0.38.0/bio/fastqc"
+		"v1.7.0/bio/fastqc"
 
 rule flagstat:
 	input:
