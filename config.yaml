@@ -103,7 +103,7 @@ trimgalore:
   #                       (Subtract INT from all qualities; compute partial sums from all indices                                                                                                                    
   #                       to the end of the sequence; cut sequence at the index at which the sum is                                                                                                                  
   #                       minimal). Default Phred score: 20.  
-  quality: 30
+  quality: 20
   # --stringency <INT>    Overlap with adapter sequence required to trim a sequence. Defaults to a
   #                      very stringent setting of 1, i.e. even a single bp of overlapping sequence                                                                                                                 
   #                      will be trimmed off from the 3' end of any read. 
@@ -116,7 +116,7 @@ trimgalore:
   # Default: 20 bp.
   # For paired-end files, both reads of a read-pair need to be longer than bp to be printed out to validated paired-end files (see option --paired). If only one read became too short there is the possibility of keeping such unpaired single-end reads (see --retain_unpaired).
   # Default pair-cutoff: 20 bp.
-  length: 30
+  length: 20
 
 
 se:
