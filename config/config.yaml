@@ -21,6 +21,7 @@ bowtie:
   # idx location
   idx: "data/external/ref/idx/bowtie/index"
 
+# for paired end read alignment
 bowtie2:
   idx: 'data/external/ref/idx/bowtie2/index'
   maxins: '2000'
@@ -85,15 +86,6 @@ bamcoverage_bw:
   # from the data (mean of the fragment size of all mate reads).
   # NOTE: this setting in config is only applicable to single end data
   read_extension_length: 200
-  
-# ----------------addons----------------
-addons:
-  # Annotate peaks using homer
-  homer_annot: false
-  # Analyse motifs using homer
-  homer_motifs: false
-  # Call super enhancers using rose?
-  se: false
 
 trimgalore:
   # -q/--quality <INT>     Trim low-quality ends from reads in addition to adapter removal. For                                                                                                                       
@@ -117,3 +109,12 @@ trimgalore:
   # For paired-end files, both reads of a read-pair need to be longer than bp to be printed out to validated paired-end files (see option --paired). If only one read became too short there is the possibility of keeping such unpaired single-end reads (see --retain_unpaired).
   # Default pair-cutoff: 20 bp.
   length: 20
+
+# ----------------addons----------------
+addons:
+  # Annotate peaks using homer
+  homer_annot: false
+  # Analyse motifs using homer
+  homer_motifs: false
+  # Call super enhancers using rose?
+  se: false
