@@ -15,3 +15,14 @@ workspace.code-workspace
 # Ignore test index files
 *.ebwt
 *.bt2
+
+# Ignore large files
+*.bam
+*.bai
+*.fastq.gz
+*.fq.gz
+*.bw
+*.gtf
+
+
+chipseq.code-workspace
