@@ -1,14 +1,13 @@
 rule bamcoverage_bw:
 	input:
-		remdup_bam = rules.remdup.output.bam,
-		blklist_regions = config['blklist_regions']
+		remdup_bam = rules.re_sort_bam.output.bam
 	output:
 		"results/bw/{sample}.bw"
 	conda:
-		"envs/deeptools.yaml"
+		"../envs/deeptools.yaml"
 	log:
 		"logs/bamcoverage_bw/{sample}.log"
-	threads: threads_high
+	threads: config_threads
 	params:
 		bin_size = config['bamcoverage_bw']['bin_size'],
 		smooth_length = config['bamcoverage_bw']['smooth_length'],
@@ -19,7 +18,6 @@ rule bamcoverage_bw:
 		'--outFileName {output} '
 		'--outFileFormat bigwig '
 		'--numberOfProcessors {threads} '
-		'--blackListFileName {input.blklist_regions} '
 		'--extendReads {params.read_extension_length} '
 		'--normalizeUsing {params.normalize_using} '
 		'--binSize {params.bin_size} '

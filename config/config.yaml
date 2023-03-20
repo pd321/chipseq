@@ -1,3 +1,5 @@
+threads: 1
+
 # labname to include in bam header
 labname: ''
 # name of the seqeucing platform
@@ -109,12 +111,3 @@ trimgalore:
   # For paired-end files, both reads of a read-pair need to be longer than bp to be printed out to validated paired-end files (see option --paired). If only one read became too short there is the possibility of keeping such unpaired single-end reads (see --retain_unpaired).
   # Default pair-cutoff: 20 bp.
   length: 20
-
-# ----------------addons----------------
-addons:
-  # Annotate peaks using homer
-  homer_annot: false
-  # Analyse motifs using homer
-  homer_motifs: false
-  # Call super enhancers using rose?
-  se: false

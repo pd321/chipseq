@@ -1,4 +1,0 @@
-sample_name	r1	r2	type	input	end_type
-sample1	data/raw/sample1/sample1_1.fq.gz		chip	input1	se
-sample2	data/raw/sample2/sample2_1.fq.gz	data/raw/sample2/sample2_2.fq.gz	chip	input1	pe
-input1	data/raw/input1/input1_1.fq.gz		input		se
