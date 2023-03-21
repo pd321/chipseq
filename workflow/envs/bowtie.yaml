@@ -1,8 +1,7 @@
-name: bowtie
 channels:
- - conda-forge
- - bioconda
- - defaults
+  - conda-forge
+  - bioconda
+  - nodefaults
 dependencies:
- - bowtie = 1.2.2
- - samtools = 1.9
+  - bowtie = 1.2.2
+  - samtools = 1.9
