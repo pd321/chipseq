@@ -24,7 +24,7 @@ rule fastqc_pe:
 
 rule trimgalore_se:
 	input: get_fastq_se
-	output: temp("results/bam/{sample}_trimmed.fq.gz")
+	output: "results/qc/trimgalore/{sample}_trimmed.fq.gz"
 	conda: "../envs/trimgalore.yaml"
 	log: "logs/qc/trimgalore/{sample}.log"
 	params:
@@ -51,8 +51,8 @@ rule trimgalore_pe:
 	input:
 		get_fastq_pe
 	output:
-		r1 = temp("results/bam/{sample}_val_1.fq.gz"),
-		r2 = temp("results/bam/{sample}_val_2.fq.gz")
+		r1 = "results/qc/trimgalore/{sample}_val_1.fq.gz",
+		r2 = "results/qc/trimgalore/{sample}_val_2.fq.gz"
 	conda:
 		"../envs/trimgalore.yaml"
 	log:

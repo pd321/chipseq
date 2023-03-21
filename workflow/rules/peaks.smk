@@ -1,7 +1,7 @@
 rule macs2:
 	input:
-		trt_bam = "results/bam/{chip_sample}.sorted.remdup.nonblklst.filt.resort.bam",
-		cnt_bam = get_input_bam
+		treatment = "results/bam/{chip_sample}.sorted.remdup.nonblklst.filt.resort.bam",
+		control = get_input_bam
 	output:
 		multiext("results/peaks/{chip_sample}/{chip_sample}",
 				 "_peaks.xls",

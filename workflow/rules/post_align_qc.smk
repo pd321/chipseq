@@ -1,6 +1,6 @@
 rule remdup:
 	input:
-		bams = rules.sortbam.output
+		bams = rules.sortbam.output.bam
 	output:
 		bam = temp("results/bam/{sample}.sorted.remdup.bam"),
 		bai = temp("results/bam/{sample}.sorted.remdup.bai"),
@@ -16,7 +16,7 @@ rule remdup:
 
 rule remove_blacklist_reads:
 	input:
-		left = rules.remdup.output,
+		left = rules.remdup.output.bam,
 		right = config['blklist_regions']
 	output:
 		temp("results/bam/{sample}.sorted.remdup.nonblklst.bam")
@@ -32,7 +32,7 @@ rule filter_bam:
 		rules.remove_blacklist_reads.output
 	output:
 		bam = temp("results/bam/{sample}.sorted.remdup.nonblklst.filt.bam"),
-		bai = temp("results/bam/{sample}.sorted.remdup.nonblklst.filt.bai")
+		idx = temp("results/bam/{sample}.sorted.remdup.nonblklst.filt.bai")
 	log:
 		"logs/qc/filter_bam/{sample}.log"
 	threads: 
@@ -46,7 +46,7 @@ rule re_sort_bam:
 	input: rules.filter_bam.output.bam
 	output: 
 		bam = "results/bam/{sample}.sorted.remdup.nonblklst.filt.resort.bam",
-		bai = "results/bam/{sample}.sorted.remdup.nonblklst.filt.resort.bai"
+		idx = "results/bam/{sample}.sorted.remdup.nonblklst.filt.resort.bai"
 	log:
 		"logs/samtools/resortbam/{sample}.log"
 	threads: config_threads
@@ -55,7 +55,7 @@ rule re_sort_bam:
 
 rule flagstat:
 	input:
-		rules.re_sort_bam.output
+		rules.re_sort_bam.output.bam
 	output:
 		"results/qc/flagstat/{sample}.txt"
 	log:
