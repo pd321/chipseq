@@ -38,7 +38,7 @@ rule filter_bam:
 	threads: 
 		config_threads
 	params:
-		extra="-F 1804 -f 2"
+		extra = get_bamfilter_params
 	wrapper:
 		"v1.23.5-48-gf27313f0/bio/samtools/view"
 

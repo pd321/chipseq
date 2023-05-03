@@ -9,7 +9,7 @@ include: "rules/bw.smk"
 peaks = expand("results/peaks/{chip_sample}/{chip_sample}_peaks.narrowPeak", chip_sample = chip_samples)
 bw = expand("results/bw/{sample}.bw", sample = samples)
 qc = ["results/qc/multiqc/multiqc_report.html"]
-out_files = peaks + bw + qc
+out_files = qc + bw + peaks
 
 rule all:
 	input:

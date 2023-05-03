@@ -2,7 +2,7 @@ rule bowtie:
 	input: 
 		rules.trimgalore_se.output
 	output: 
-		temp("results/bam/{sample}_bowtie.bam")
+		temp("results/bam/{sample}.bowtie.bam")
 	conda: 
 		'../envs/bowtie.yaml'
 	threads: 
@@ -60,7 +60,7 @@ rule bowtie2:
 		"v1.24.0/bio/bowtie2/align"
 
 rule sortbam:
-	input: rules.bowtie2.output
+	input: get_sortbam_input
 	output: 
 		bam = temp("results/bam/{sample}.sorted.bam"),
 		idx = temp("results/bam/{sample}.sorted.bai")

@@ -40,6 +40,11 @@ macs2:
   #                       DEFAULT: 0.05. -q, and -p are mutually exclusive.
   qvalue: 0.05
 
+filter_bam:
+  pe_keep_reads_flags: 2
+  pe_remove_reads_flags: 1804
+  se_remove_reads_flags: 1028
+
 bamcoverage_bw:
   # --binSize, -bs   
   # Size of the bins, in bases, 
